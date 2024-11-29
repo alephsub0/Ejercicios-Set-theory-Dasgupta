@@ -3,7 +3,7 @@ name: LaTeX2WordPress Automation
 on:
   push:
     branches:
-      - main 
+      - main
 
 jobs:
   run-latex2wordpress:
@@ -16,13 +16,19 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.9' 
+        python-version: '3.9'
 
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirements.txt 
+        pip install -r requirements.txt
+
+    - name: Move files to home directory
+      run: |
+        cp LaTeX2WordPress.py $HOME/LaTeX2WordPress.py
+        cp ./Cap14/Problem0959.tex $HOME/Problem0959.tex
+        cp ./Portada.jpeg $HOME/Portada.jpeg
 
     - name: Run LaTeX2WordPress script
-        run: |
-            python $HOME/LaTeX2WordPress.py $HOME/Cap14/Problem0959.tex $HOME/Portada.jpeg
+      run: |
+        python $HOME/LaTeX2WordPress.py $HOME/Problem0959.tex $HOME/Portada.jpeg
