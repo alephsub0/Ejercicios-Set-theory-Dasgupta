@@ -24,8 +24,5 @@ jobs:
         pip install -r requirements.txt 
 
     - name: Run LaTeX2WordPress script
-        env:
-            TEX_FILE: ./Cap14/Problema0959.tex
-            COVER_IMAGE: Portada.jpeg
         run: |
-            python LaTeX2WordPress.py $TEX_FILE $COVER_IMAGE
+            python LaTeX2WordPress.py ./Cap14/Problem0959.tex Portada.jpeg
