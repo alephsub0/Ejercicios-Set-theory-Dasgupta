@@ -23,6 +23,14 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
+    - name: Install Pandoc
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y pandoc
+
+    - name: Verify Pandoc installation
+      run: pandoc --version
+      
     - name: Move files to home directory
       run: |
         cp LaTeX2WordPress.py $HOME/LaTeX2WordPress.py
