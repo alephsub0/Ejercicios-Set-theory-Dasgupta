@@ -25,4 +25,4 @@ jobs:
 
     - name: Run LaTeX2WordPress script
         run: |
-            python LaTeX2WordPress.py ./Cap14/Problem0959.tex Portada.jpeg
+            python $HOME/LaTeX2WordPress.py $HOME/Cap14/Problem0959.tex $HOME/Portada.jpeg
