@@ -105,16 +105,16 @@ def postWordPress(html, tema, portada):
         "Content-Disposition": "attachment; filename=Portada.jpeg",
         "Content-Type": "image/jpeg",
     }
-    with open(portada, "rb") as img:
-        response = requests.post(api_url, headers=headers, auth=auth, data=img)
+    # with open(portada, "rb") as img:
+    #     response = requests.post(api_url, headers=headers, auth=auth, data=img)
 
-    # Verificar si la imagen fue subida exitosamente
-    if response.status_code == 201:  # Código 201 = Creado
-        media_id = response.json()["id"]
-        print(f"Imagen subida exitosamente. ID: {media_id}")
-    else:
-        print("Error al subir la imagen:", response.text)
-        return
+    # # Verificar si la imagen fue subida exitosamente
+    # if response.status_code == 201:  # Código 201 = Creado
+    #     media_id = response.json()["id"]
+    #     print(f"Imagen subida exitosamente. ID: {media_id}")
+    # else:
+    #     print("Error al subir la imagen:", response.text)
+    #     return
 
     # Leer el contenido HTML
     with open(html, "r", encoding='utf8') as f:
