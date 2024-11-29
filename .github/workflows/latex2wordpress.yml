@@ -26,9 +26,9 @@ jobs:
     - name: Move files to home directory
       run: |
         cp LaTeX2WordPress.py $HOME/LaTeX2WordPress.py
-        cp ./Cap14/Problem0959.tex $HOME/Problem0959.tex
+        cp ./Cap14/Problema0959.tex $HOME/Problem0959.tex
         cp ./Portada.jpeg $HOME/Portada.jpeg
 
     - name: Run LaTeX2WordPress script
       run: |
-        python $HOME/LaTeX2WordPress.py $HOME/Problem0959.tex $HOME/Portada.jpeg
+        python $HOME/LaTeX2WordPress.py $HOME/Problema0959.tex $HOME/Portada.jpeg
