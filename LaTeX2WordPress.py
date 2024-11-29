@@ -128,7 +128,7 @@ def postWordPress(html, tema, portada):
         "status": "draft",  # Opciones: 'publish', 'draft', etc.
         "categories": [4],  # IDs de las categorías
         "tags": [1],  # IDs de las etiquetas
-        "featured_media": media_id,  # ID de la imagen destacada
+        # "featured_media": media_id,  # ID de la imagen destacada
     }
 
     # Enviar la solicitud POST para crear la publicación
