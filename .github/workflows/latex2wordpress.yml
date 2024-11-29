@@ -1,0 +1,31 @@
+name: LaTeX2WordPress Automation
+
+on:
+  push:
+    branches:
+      - main 
+
+jobs:
+  run-latex2wordpress:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9' 
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt 
+
+    - name: Run LaTeX2WordPress script
+        env:
+            TEX_FILE: ./Cap14/Problema0959.tex
+            COVER_IMAGE: Portada.jpeg
+        run: |
+            python LaTeX2WordPress.py $TEX_FILE $COVER_IMAGE
