@@ -240,7 +240,7 @@ if __name__ == "__main__":
         "X-Auth-Key": os.getenv("CLOUDFLARE_TOKEN")
     }
 
-    url_cloudflare = f"https://api.cloudflare.com/client/v4/zones/{zona_id}/firewall/access_rules/rules"
+    url_cloudflare = f"https://api.cloudflare.com/client/v4/zones/5fae730778c52d08659c276de4f7a85a/firewall/access_rules/rules"
 
     print(f"Convirtiendo {archivo} a HTML y publicando en WordPress...")
     print(f"Usuario: {os.getenv('USUARIO')}")
