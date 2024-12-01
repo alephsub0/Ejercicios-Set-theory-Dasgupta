@@ -5,6 +5,8 @@ import requests
 import json
 import sys
 from dotenv import load_dotenv
+import base64
+import time 
 
 ## Función para convertir un archivo LaTeX a HTML usando Pandoc
 def LaTeX2HTML(archivo):
@@ -140,12 +142,115 @@ def postWordPress(html, tema, portada):
     else:
         print("Error al crear la publicación:", response.status_code, response.text)
 
+
+## Funciones para incluir ip en Cloudflare
+usuario_serv = os.getenv("USUARIO_SERV")
+contraseña_serv = os.getenv("CONTRASENIA_SERV")
+credenciales = f"{usuario_serv}:{contraseña_serv}"
+credenciales_en_base64 = base64.b64encode(credenciales.encode("utf-8")).decode("utf-8")
+
+zona_id = os.getenv("CLOUDFLARE_ZONE_ALEPH")
+
+headers_clouflare = {
+    "Content-Type": "application/json",
+    "X-Auth-Email": os.getenv("CLOUDFLARE_CORREO"),
+    "X-Auth-Key": os.getenv("CLOUDFLARE_TOKEN")
+}
+
+url_cloudflare = f"https://api.cloudflare.com/client/v4/zones/{zona_id}/firewall/access_rules/rules"
+
+
+def obtener_ip_publica():
+    """Obtiene la IP pública del dispositivo
+    
+    returns:
+    str: IP pública del dispositivo
+    """
+
+    try:
+        respuesta = requests.get('https://api.ipify.org?format=json')
+        ip_publica = respuesta.json()['ip']
+        return ip_publica
+    except requests.RequestException as err:
+        print(f"Error obteniendo la IP pública: {err}")
+        return None
+    
+def insertar_regla_ip(ip,tipo="whitelist",comentario="Script"):
+    """Inserta una regla de acceso en Cloudflare
+
+    Referecias: https://developers.cloudflare.com/api/operations/ip-access-rules-for-a-zone-create-an-ip-access-rule
+
+    Args:
+    ip (str): Dirección IP a insertar
+    tipo (str): Tipo de regla (whitelist o blacklist)
+    comentario (str): Comentario de la regla
+    
+    returns:
+    str: Identificador de la regla creada
+    """
+
+    payload = {  
+        "configuration": 
+            {
+                "target": "ip",
+                "value": ip
+            },  
+        "mode": tipo, 
+        "notes": comentario
+    }
+
+    response = requests.request("POST", url_cloudflare, headers=headers_clouflare, json=payload)
+
+    respuesta = response.json()
+
+    # verificamos si respuesta tiene una clave success con valor true
+    if respuesta.get("success"):
+        return respuesta['result']['id']
+    else:
+        raise Exception(f"Error al insertar la regla: {respuesta}")
+
+def eliminar_regla_ip(identificador_regla):
+
+    """
+    Elimina una regla de acceso en Cloudflare
+
+    Referecias: https://developers.cloudflare.com/api/operations/ip-access-rules-for-a-zone-delete-an-ip-access-rule
+
+    Args:
+    identificador_regla (str): Identificador de la regla a eliminar
+
+    returns:
+    bool: True si la regla fue eliminada exitosamente
+    """
+
+
+    url = f"https://api.cloudflare.com/client/v4/zones/{zona_id}/firewall/access_rules/rules/{identificador_regla}"
+
+    response = requests.request("DELETE", url, headers=headers_clouflare)
+
+    respuesta = response.json()
+
+    if respuesta.get("success"):
+        return True
+    else:
+        raise Exception(f"Error al eliminar la regla: {respuesta}")
+
 # Punto de entrada del script
 if __name__ == "__main__":
     # Leer argumentos de la línea de comandos
     archivo = sys.argv[1]
     portada = sys.argv[2]
 
+    # Insertamos la regla para el firewall
+    identificador_regla = insertar_regla_ip(obtener_ip_publica(),tipo="whitelist",comentario="Github Actions")
+    # esperar
+    time.sleep(2)
+
     # Convertir LaTeX a HTML y publicar en WordPress
     tema = LaTeX2HTML(archivo)
     postWordPress(archivo.replace(".tex", ".html"), tema, portada)
+
+    # Esperar 1 segundo
+    time.sleep(1)
+    # Eliminar la regla del firewall
+    eliminar_regla_ip(identificador_regla)
