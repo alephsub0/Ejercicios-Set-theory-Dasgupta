@@ -223,7 +223,6 @@ def eliminar_regla_ip(identificador_regla):
     bool: True si la regla fue eliminada exitosamente
     """
 
-
     url = f"https://api.cloudflare.com/client/v4/zones/{zona_id}/firewall/access_rules/rules/{identificador_regla}"
 
     response = requests.request("DELETE", url, headers=headers_clouflare)
