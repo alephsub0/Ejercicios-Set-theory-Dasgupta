@@ -245,7 +245,7 @@ if __name__ == "__main__":
     print(f"Convirtiendo {archivo} a HTML y publicando en WordPress...")
     print(f"Usuario: {os.getenv('USUARIO')}")
     print(f"Usuario servidor: {os.getenv('USUARIO_SERV')}")
-
+    print(f"URL: {url_cloudflare}")
 
     # Insertamos la regla para el firewall
     identificador_regla = insertar_regla_ip(obtener_ip_publica(),tipo="whitelist",comentario="Github Actions")
