@@ -240,6 +240,11 @@ if __name__ == "__main__":
     archivo = sys.argv[1]
     portada = sys.argv[2]
 
+    print(f"Convirtiendo {archivo} a HTML y publicando en WordPress...")
+    print(f"Usuario: {os.getenv('USUARIO')}")
+    print(f"Usuario servidor: {os.getenv('USUARIO_SERV')}")
+
+
     # Insertamos la regla para el firewall
     identificador_regla = insertar_regla_ip(obtener_ip_publica(),tipo="whitelist",comentario="Github Actions")
     # esperar
