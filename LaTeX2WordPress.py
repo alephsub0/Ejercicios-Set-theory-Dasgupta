@@ -101,6 +101,7 @@ def postWordPress(html, tema, portada):
     usuario = os.getenv("USUARIO")
     contraseña = os.getenv("CONTRASENIA")
     auth = (usuario, contraseña)
+    print(f"Usuario: {os.getenv('USUARIO')}")
 
     # Subir la imagen de portada
     headers = {
@@ -144,20 +145,6 @@ def postWordPress(html, tema, portada):
 
 
 ## Funciones para incluir ip en Cloudflare
-usuario_serv = os.getenv("USUARIO_SERV")
-contraseña_serv = os.getenv("CONTRASENIA_SERV")
-credenciales = f"{usuario_serv}:{contraseña_serv}"
-credenciales_en_base64 = base64.b64encode(credenciales.encode("utf-8")).decode("utf-8")
-
-zona_id = os.getenv("CLOUDFLARE_ZONE_ALEPH")
-
-headers_clouflare = {
-    "Content-Type": "application/json",
-    "X-Auth-Email": os.getenv("CLOUDFLARE_CORREO"),
-    "X-Auth-Key": os.getenv("CLOUDFLARE_TOKEN")
-}
-
-url_cloudflare = f"https://api.cloudflare.com/client/v4/zones/{zona_id}/firewall/access_rules/rules"
 
 
 def obtener_ip_publica():
@@ -239,6 +226,21 @@ if __name__ == "__main__":
     # Leer argumentos de la línea de comandos
     archivo = sys.argv[1]
     portada = sys.argv[2]
+
+    usuario_serv = os.getenv("USUARIO_SERV")
+    contraseña_serv = os.getenv("CONTRASENIA_SERV")
+    credenciales = f"{usuario_serv}:{contraseña_serv}"
+    credenciales_en_base64 = base64.b64encode(credenciales.encode("utf-8")).decode("utf-8")
+
+    zona_id = os.getenv("CLOUDFLARE_ZONE_ALEPH")
+
+    headers_clouflare = {
+        "Content-Type": "application/json",
+        "X-Auth-Email": os.getenv("CLOUDFLARE_CORREO"),
+        "X-Auth-Key": os.getenv("CLOUDFLARE_TOKEN")
+    }
+
+    url_cloudflare = f"https://api.cloudflare.com/client/v4/zones/{zona_id}/firewall/access_rules/rules"
 
     print(f"Convirtiendo {archivo} a HTML y publicando en WordPress...")
     print(f"Usuario: {os.getenv('USUARIO')}")
