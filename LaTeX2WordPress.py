@@ -244,6 +244,7 @@ if __name__ == "__main__":
 
     print(f"Convirtiendo {archivo} a HTML y publicando en WordPress...")
     print(f"Usuario: {os.getenv('USUARIO')}")
+    print(f"Usuario: andres.merino")
     print(f"Usuario servidor: {os.getenv('USUARIO_SERV')}")
     print(f"URL: {url_cloudflare}")
 
