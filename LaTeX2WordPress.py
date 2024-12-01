@@ -227,36 +227,36 @@ if __name__ == "__main__":
     archivo = sys.argv[1]
     portada = sys.argv[2]
 
-    usuario_serv = os.environ["USUARIO_SERV"]
-    contraseña_serv = os.environ["CONTRASENIA_SERV"]
-    credenciales = f"{usuario_serv}:{contraseña_serv}"
-    credenciales_en_base64 = base64.b64encode(credenciales.encode("utf-8")).decode("utf-8")
+    # usuario_serv = os.environ["USUARIO_SERV"]
+    # contraseña_serv = os.environ["CONTRASENIA_SERV"]
+    # credenciales = f"{usuario_serv}:{contraseña_serv}"
+    # credenciales_en_base64 = base64.b64encode(credenciales.encode("utf-8")).decode("utf-8")
 
-    zona_id = os.environ["CLOUDFLARE_ZONE_ALEPH"]
+    # zona_id = os.environ["CLOUDFLARE_ZONE_ALEPH"]
 
-    headers_clouflare = {
-        "Content-Type": "application/json",
-        "X-Auth-Email": os.environ["CLOUDFLARE_CORREO"],
-        "X-Auth-Key": os.environ["CLOUDFLARE_TOKEN"]
-    }
+    # headers_clouflare = {
+    #     "Content-Type": "application/json",
+    #     "X-Auth-Email": os.environ["CLOUDFLARE_CORREO"],
+    #     "X-Auth-Key": os.environ["CLOUDFLARE_TOKEN"]
+    # }
 
-    url_cloudflare = f"https://api.cloudflare.com/client/v4/zones/{zona_id}/firewall/access_rules/rules"
+    # url_cloudflare = f"https://api.cloudflare.com/client/v4/zones/{zona_id}/firewall/access_rules/rules"
 
     print(f"Convirtiendo {archivo} a HTML y publicando en WordPress...")
     print(f"Usuario: {os.environ['USUARIO']}")
-    print(f"Usuario servidor: {os.environ['USUARIO_SERV']}")
+    # print(f"Usuario servidor: {os.environ['USUARIO_SERV']}")
 
 
-    # Insertamos la regla para el firewall
-    identificador_regla = insertar_regla_ip(obtener_ip_publica(),tipo="whitelist",comentario="Github Actions")
-    # esperar
-    time.sleep(2)
+    # # Insertamos la regla para el firewall
+    # identificador_regla = insertar_regla_ip(obtener_ip_publica(),tipo="whitelist",comentario="Github Actions")
+    # # esperar
+    # time.sleep(2)
 
     # Convertir LaTeX a HTML y publicar en WordPress
     tema = LaTeX2HTML(archivo)
     postWordPress(archivo.replace(".tex", ".html"), tema, portada)
 
-    # Esperar 1 segundo
-    time.sleep(1)
-    # Eliminar la regla del firewall
-    eliminar_regla_ip(identificador_regla)
+    # # Esperar 1 segundo
+    # time.sleep(1)
+    # # Eliminar la regla del firewall
+    # eliminar_regla_ip(identificador_regla)
