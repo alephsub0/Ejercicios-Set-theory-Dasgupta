@@ -108,7 +108,7 @@ def postWordPress(html, tema, portada):
         "Content-Type": "image/jpeg",
     }
     # with open(portada, "rb") as img:
-    #     response = requests.post(api_url, headers=headers, auth=auth, data=img)
+    #     response = requests.post(api_url_media, headers=headers, auth=auth, data=img)
 
     # # Verificar si la imagen fue subida exitosamente
     # if response.status_code == 201:  # Código 201 = Creado
@@ -134,7 +134,7 @@ def postWordPress(html, tema, portada):
     }
 
     # Enviar la solicitud POST para crear la publicación
-    response = requests.post(url, headers=headers, auth=auth, data=json.dumps(data))
+    response = requests.post(api_url, headers=headers, auth=auth, data=json.dumps(data))
 
     # Verificar si la publicación fue creada exitosamente
     if response.status_code == 201:  # Código 201 indica éxito
