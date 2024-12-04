@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  PROBLEMA_PATH: ./Cap14/Problema0959
+  PROBLEMA_PATH: ./test/file.tex
   USUARIO: ${{ secrets.USUARIO }}
   USUARIO_SERV: ${{ secrets.USUARIO_SERV }}
   CONTRASENIA_SERV: ${{ secrets.CONTRASENIA_SERV }}
@@ -45,7 +45,7 @@ jobs:
     - name: Move files to home directory
       run: |
         cp LaTeX2WordPress.py $HOME/LaTeX2WordPress.py
-        cp $PROBLEMA_PATH.tex $HOME/Problema.tex
+        cp $PROBLEMA_PATH $HOME/Problema.tex
         cp ./Portada.jpeg $HOME/Portada.jpeg
         cp ./aleph-comandos.sty $HOME/aleph-comandos.sty
 
