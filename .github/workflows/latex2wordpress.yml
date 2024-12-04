@@ -34,10 +34,13 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Install Pandoc
+    - name: Install Pandoc 3.5
       run: |
         sudo apt-get update
-        sudo apt-get install -y pandoc
+        sudo apt install wget gdebi-core
+        wget https://github.com/jgm/pandoc/releases/download/3.5/pandoc-3.5-1-amd64.deb
+        sudo gdebi pandoc-3.5-1-amd64.deb
+        sudo apt install gdebi-core
 
     - name: Verify Pandoc installation
       run: pandoc --version
