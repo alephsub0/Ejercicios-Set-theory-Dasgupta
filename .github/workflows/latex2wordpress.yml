@@ -6,6 +6,7 @@ on:
       - main
 
 env:
+  PROBLEMA_PATH: ./Cap14/Problema0959
   USUARIO: ${{ secrets.USUARIO }}
   USUARIO_SERV: ${{ secrets.USUARIO_SERV }}
   CONTRASENIA_SERV: ${{ secrets.CONTRASENIA_SERV }}
@@ -14,7 +15,6 @@ env:
   CLOUDFLARE_TOKEN: ${{ secrets.CLOUDFLARE_TOKEN }}
   CLOUDFLARE_CORREO: ${{ secrets.CLOUDFLARE_CORREO }}
   WP_URL: ${{ vars.WP_URL }}
-  PROBLEMA_PATH: ./Cap14/Problema0959
 
 jobs:
   run-latex2wordpress:
