@@ -48,6 +48,7 @@ def LaTeX2HTML(archivo):
     # Leer el archivo HTML generado
     with open(archivo_html, "r", encoding='utf8') as f:
         texto = f.read()
+    print("\n\nArchivo HTML generado:\n\n", texto)
 
     # Realizar ajustes finales al contenido HTML
     texto = texto.replace('<em>Proof.</em>', '<strong>Demostración.</strong>')
