@@ -59,9 +59,8 @@ def LaTeX2HTML(archivo):
     texto = texto.replace(r'\sen', r'\sin')
     texto = texto.replace(r'\setlength{\arraycolsep}{2pt}', r'')
     texto = texto.replace('~◻', '').replace(' ◻', '')
-    # Elimino saltos de línea innecesarios br
-    texto = texto.replace('<br />', ' ')
-
+    # Elimino saltos de línea innecesarios, que no inicie la siguiente con <
+    texto = re.sub(r'\n(?!<)', ' ', texto)
     # Extraer el contenido dentro de la etiqueta <body>
     patron = r'<body>(.*)</body>'
     texto = re.search(patron, texto, re.DOTALL).group(1)
