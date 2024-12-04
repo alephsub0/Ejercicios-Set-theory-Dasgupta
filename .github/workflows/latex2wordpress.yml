@@ -37,10 +37,9 @@ jobs:
     - name: Install Pandoc 3.5
       run: |
         sudo apt-get update
-        sudo apt install wget gdebi-core
+        sudo apt-get install -y wget gdebi-core
         wget https://github.com/jgm/pandoc/releases/download/3.5/pandoc-3.5-1-amd64.deb
-        sudo gdebi pandoc-3.5-1-amd64.deb
-        sudo apt install gdebi-core
+        sudo gdebi --non-interactive pandoc-3.5-1-amd64.deb
 
     - name: Verify Pandoc installation
       run: pandoc --version
