@@ -233,10 +233,10 @@ if __name__ == "__main__":
     # Insertamos la regla para el firewall
     ip_publica = obtener_ip_publica()
     if ip_publica:
-        # identificador_regla = insertar_regla_ip(ip_publica, headers_clouflare, url_cloudflare, tipo="whitelist", comentario="Github Actions")
+        identificador_regla = insertar_regla_ip(ip_publica, headers_clouflare, url_cloudflare, tipo="whitelist", comentario="Github Actions")
 
-        # # Esperar 2 segundos
-        # time.sleep(2)
+        # Esperar 2 segundos
+        time.sleep(2)
 
         # Convertir LaTeX a HTML y publicar en WordPress
         tema = LaTeX2HTML(archivo)
@@ -246,4 +246,4 @@ if __name__ == "__main__":
         time.sleep(1)
 
         # Eliminar la regla del firewall
-        # eliminar_regla_ip(identificador_regla, headers_clouflare, zona_id)
+        eliminar_regla_ip(identificador_regla, headers_clouflare, zona_id)
