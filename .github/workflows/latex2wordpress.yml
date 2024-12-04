@@ -48,6 +48,7 @@ jobs:
         cp $PROBLEMA_PATH $HOME/Problema.tex
         cp ./Portada.jpeg $HOME/Portada.jpeg
         cp ./aleph-comandos.sty $HOME/aleph-comandos.sty
+        cp ./aleph-notas.cls $HOME/aleph-notas.cls
 
     - name: Run LaTeX2WordPress script
       run: |
