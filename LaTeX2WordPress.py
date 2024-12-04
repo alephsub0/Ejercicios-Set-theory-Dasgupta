@@ -56,6 +56,8 @@ def LaTeX2HTML(archivo):
     texto = texto.replace('\n<div class="proof">', '<br>\n<div class="proof">')
     texto = texto.replace('<div class="ejer">\n<p>', '<div class="ejer"><p><strong>Ejercicio. </strong>')
     texto = texto.replace('<div class="prob">\n<p>', '<div class="ejer"><p>')
+    # Cambiar <strong>Problema n</strong> por <strong>Problema</strong>
+    texto = re.sub(r'<strong>Problema \d+</strong>', r'<strong>Problema</strong>', texto)
     texto = texto.replace(r'\sen', r'\sin')
     texto = texto.replace(r'\setlength{\arraycolsep}{2pt}', r'')
     texto = texto.replace('~◻', '').replace(' ◻', '')
