@@ -114,8 +114,10 @@ def postWordPress(html, tema, portada):
     auth = (usuario, contraseña)
 
     # Subir la imagen de portada
+    #Nombre portada
+    nombre_portada = html.split("/")[-1].replace(".html", ".jpeg")
     headers = {
-        "Content-Disposition": "attachment; filename=Portada.jpeg",
+        "Content-Disposition": f"attachment; filename=Portada{nombre_portada}",
         "Content-Type": "image/jpeg",
     }
     with open(portada, "rb") as img:
