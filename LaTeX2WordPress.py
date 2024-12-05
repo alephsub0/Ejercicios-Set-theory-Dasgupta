@@ -54,6 +54,7 @@ def LaTeX2HTML(archivo):
     texto = texto.replace('<em>Solución.</em>', '<strong>Solución.</strong>')
     texto = texto.replace('\n<div class="proof">', '<br>\n<div class="proof">')
     texto = texto.replace('<div class="ejer">\n<p>', '<div class="ejer"><p><strong>Ejercicio. </strong>')
+    texto = texto.replace('<div class="defi">\n<p>', '<div class="defi"><p><strong>Definición. </strong>')
     texto = texto.replace('<div class="prob">\n<p>', '<div class="ejer"><p>')
     # Cambiar <strong>Problema n</strong> por <strong>Problema</strong>
     texto = re.sub(r'<strong>Problema \d+</strong>', r'<strong>Problema</strong>', texto)
@@ -66,8 +67,8 @@ def LaTeX2HTML(archivo):
     texto = re.sub(r'\n(?=<strong)', ' ', texto)
     # Elimino saltos de línea innecesarios, que inicie la siguiente con <span class="math inline"
     texto = re.sub(r'\n(?=<span class="math inline")', ' ', texto)
-    # Corregimos los problemas con las ecuaciones
-    texto = texto.replace('\n<span class="math display">\n', '<span class="math display">')
+    # Corregimos los problemas con las ecuaciones \n<span class="math display">\n
+    texto = re.sub(r'\n(?=<span class="math display">\n)', '<span class="math display">', texto)
     # Extraer el contenido dentro de la etiqueta <body>
     patron = r'<body>(.*)</body>'
     texto = re.search(patron, texto, re.DOTALL).group(1)
