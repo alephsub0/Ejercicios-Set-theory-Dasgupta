@@ -1,0 +1,59 @@
+\documentclass[a4,10pt]{aleph-notas}
+
+% -- Paquetes adicionales
+\usepackage{enumitem}
+\usepackage{aleph-comandos}
+
+% -- Datos
+\institucion{Proyecto Alephsub0}
+\asignatura{Teoría de conjuntos}
+\tema{Ejercicios 258 del libro de Abhijit Dasgupta}
+\autor{Andrés Merino}
+\fecha{Octubre 2024}
+
+\fuente{montserrat}
+\logouno[4.5cm]{Logos/LogoAlephsub0-02}
+\definecolor{colordef}{cmyk}{0.81,0.62,0.00,0.22}
+
+% -- Comandos adicionales
+\newtheorem*{prob}{Problema}
+    \tcolorboxenvironment{prob}{%
+        color=colordef,recuadrost,colback=colordef!7,drop fuzzy shadow
+    }
+
+
+\begin{document}
+
+\encabezado
+
+\noindent
+El siguiente problema corresponde al Problema 258 del libro Set theory de Abhijit Dasgupta. Primero, presentemos algunas definiciones:
+
+\begin{defi}
+    Dos conjuntos $A$ y $B$ se llaman \textbf{equinumerosos}, denotado como $A \sim B$, si existe una función biyectiva de $A$ en $B$.
+\end{defi}
+
+\begin{defi}
+    Un conjunto $A$ se dice \textbf{Dedekind-infinito} si $A \sim B$ para algún subconjunto propio $B \subseteq A$, es decir, si existe una función $\func{f}{A}{A}$ que es inyectiva pero no sobreyectiva. Un conjunto se denominará \textbf{Dedekind-finito} si no es Dedekind-infinito.
+\end{defi}
+
+\begin{prob}
+    Si $A\sim B$ y $A$ es Dedekind-finito, entonces $B$ también lo es.
+\end{prob}
+
+\begin{proof}
+    Sean \( A \) y \( B \) tales que \( A \sim B \), es decir, existe una función biyectiva \( \varphi: A \to B \). Queremos demostrar que \( A \) es Dedekind-finito si y sólo si \( B \) lo es.
+
+    Supongamos que \( A \) es Dedekind-finito. Nuestro objetivo es demostrar que \( B \) también es Dedekind-finito.
+
+    Supongamos, por contradicción, que \( B \) no es Dedekind-finito. Esto implica que existe una función inyectiva \( \func{g}{B}{B} \) que no es sobreyectiva. 
+
+    Tomemos $\func{\varphi}{A}{B}$ la función biyectiva que existe gracias a que $A\sim b$. Definimos 
+    \[
+        \func{f=\varphi^{-1} \circ g \circ \varphi}{A}{A}. 
+    \]
+    Dado que \( \varphi \) es biyectiva y $g$ es inyectiva, \( f \) es inyectiva. Además, como \( g \) no es sobreyectiva, \( f \) tampoco lo será. Esto implica que \( A \) es Dedekind-infinito, lo cual contradice nuestra suposición inicial.
+
+\end{proof}
+    
+\end{document}
