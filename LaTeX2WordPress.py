@@ -68,7 +68,7 @@ def LaTeX2HTML(archivo):
     # Elimino saltos de línea innecesarios, que inicie la siguiente con <span class="math inline"
     texto = re.sub(r'\n(?=<span class="math inline")', ' ', texto)
     # Corregimos los problemas con las ecuaciones \n<span class="math display">\n
-    texto = re.sub(r'\n(?=<span class="math display">\n)', '<span class="math display">', texto)
+    texto = re.sub(r"\s*\n\s*<span class=\"math display\">\s*\n\s*", r'<span class="math display">', texto)
     # Extraer el contenido dentro de la etiqueta <body>
     patron = r'<body>(.*)</body>'
     texto = re.search(patron, texto, re.DOTALL).group(1)
