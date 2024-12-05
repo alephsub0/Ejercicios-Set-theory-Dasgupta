@@ -78,7 +78,6 @@ def LaTeX2HTML(archivo):
     texto = re.sub(patron, '', texto, flags=re.DOTALL)
 
     # Formatear el contenido para mayor legibilidad
-    texto = texto.replace('<span class="math display">', '\n<span class="math display">\n')
     texto = texto.replace('<li>', '\t<li>')
     texto = texto.replace('<tr ', '\t<tr ')
     texto = texto.replace('<div class="proof">\n<p>', '<div class="proof">\n\t<p>')
