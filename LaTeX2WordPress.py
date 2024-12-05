@@ -48,7 +48,6 @@ def LaTeX2HTML(archivo):
     # Leer el archivo HTML generado
     with open(archivo_html, "r", encoding='utf8') as f:
         texto = f.read()
-    print("\n\nArchivo HTML generado:\n\n", texto)
 
     # Realizar ajustes finales al contenido HTML
     texto = texto.replace('<em>Proof.</em>', '<strong>Demostración.</strong>')
@@ -63,6 +62,12 @@ def LaTeX2HTML(archivo):
     texto = texto.replace('~◻', '').replace(' ◻', '')
     # Elimino saltos de línea innecesarios, que no inicie la siguiente con <
     texto = re.sub(r'\n(?!<)', ' ', texto)
+    # Elimino saltos de línea innecesarios, que inicie la siguiente con <strong
+    texto = re.sub(r'\n(?=<strong)', ' ', texto)
+    # Elimino saltos de línea innecesarios, que inicie la siguiente con <span class="math inline"
+    texto = re.sub(r'\n(?=<span class="math inline")', ' ', texto)
+    # Corregimos los problemas con las ecuaciones
+    texto = texto.replace('\n<span class="math display">\n', '<span class="math display">')
     # Extraer el contenido dentro de la etiqueta <body>
     patron = r'<body>(.*)</body>'
     texto = re.search(patron, texto, re.DOTALL).group(1)
@@ -78,6 +83,7 @@ def LaTeX2HTML(archivo):
     texto = texto.replace('<div class="proof">\n<p>', '<div class="proof">\n\t<p>')
 
     # Sobreescribir el archivo HTML con los cambios realizados
+    print("\n\nArchivo HTML generado:\n\n", texto)
     with open(archivo_html, "w", encoding='utf8') as f:
         f.write(texto)
 
