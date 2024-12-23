@@ -1,0 +1,88 @@
+\documentclass[a4,10pt]{aleph-notas}
+
+% -- Paquetes adicionales
+\usepackage{enumitem}
+\usepackage{aleph-comandos}
+
+% -- Datos
+\institucion{Proyecto Alephsub0}
+\asignatura{Teoría de conjuntos}
+\tema{Problema 259 del libro de Abhijit Dasgupta}
+\autor{Andrés Merino}
+\fecha{Diciembre 2024}
+
+\fuente{montserrat}
+\logouno[4.5cm]{Logos/LogoAlephsub0-02}
+\definecolor{colordef}{cmyk}{0.81,0.62,0.00,0.22}
+
+% -- Comandos adicionales
+\newtheorem*{prob}{Problema}
+    \tcolorboxenvironment{prob}{%
+        color=colordef,recuadrost,colback=colordef!7,drop fuzzy shadow
+    }
+
+
+\begin{document}
+
+\encabezado
+
+\noindent
+El siguiente problema corresponde al Problema 259 del libro Set theory de Abhijit Dasgupta. Primero, presentemos algunas definiciones:
+
+\begin{defi}
+    Un conjunto $A$ se dice \textbf{Dedekind-infinito} si $A \sim B$ para algún subconjunto propio $B \subseteq A$, es decir, si existe una función $\func{f}{A}{A}$ que es inyectiva pero no sobreyectiva. Un conjunto se denominará \textbf{Dedekind-finito} si no es Dedekind-infinito.
+\end{defi}
+
+\begin{prob}
+    Sea $A \subseteq B$. Si $A$ es Dedekind-infinito, entonces también lo es $B$. Equivalentemente, si $B$ es Dedekind-finito, entonces también lo es $A$.
+\end{prob}
+
+\begin{proof}
+    Supongamos que \( A \) es Dedekind-infinito y \( A \subseteq B \). Dado que \( A \) es Dedekind-infinito, existe una función inyectiva \( f: A \to A \) que no es sobreyectiva.
+
+    Como \( A \subseteq B \), podemos construir una extensión de \( f \) a una función \( g: B \to B \) definiendo:
+    \[
+    g(x) =
+    \begin{cases} 
+    f(x) & \text{si } x \in A, \\
+    x & \text{si } x \in B \setminus A.
+    \end{cases}
+    \]
+
+    Verifiquemos primero que \( g \) es inyectiva. Sean \( x, y \in B \) tales que \( g(x) = g(y) \). Hay tres casos a considerar:
+    \begin{itemize}
+        \item \textbf{Caso 1:} Si \( x, y \in A \), entonces \( g(x) = g(y) \) implica \( f(x) = f(y) \). Como \( f \) es inyectiva, se sigue que \( x = y \).
+        
+        \item \textbf{Caso 2:} Si \( x, y \in B \setminus A \), entonces \( g(x) = x \) y \( g(y) = y \). Por lo tanto, \( g(x) = g(y) \) implica \( x = y \).
+        
+        \item \textbf{Caso 3:} Si \( x \in A \) y \( y \in B \setminus A \) (o viceversa), entonces \( g(x) = f(x) \) y \( g(y) = y \). Como \( f(x) \in A \) y \( y \notin A \), se sigue que \( g(x) \neq g(y) \). Por lo tanto, este caso no se da.
+    \end{itemize}
+    Así, \( g \) es inyectiva.
+
+    Ahora, verifiquemos que \( g \) no es sobreyectiva analizando su imagen. La imagen de \( g \):
+    \[
+    \text{Im}(g) = \{ g(x) \mid x \in A \} \cup \{ g(x) \mid x \in B \setminus A \}.
+    \]
+
+    \begin{itemize}
+        \item Para \( x \in A \), \( g(x) = f(x) \), y por tanto, \( \{ g(x) \mid x \in A \} = \{ f(x) \mid x \in A \} =\text{Im}(f) \).
+        \item Para \( x \in B \setminus A \), \( g(x) = x \), y por tanto, \( \{ g(x) \mid x \in B \setminus A \} = \{ x \mid x \in B \setminus A \} = B \setminus A \).
+    \end{itemize}
+
+    Por lo tanto, podemos escribir:
+    \[
+    \text{Im}(g) = \text{Im}(f) \cup (B \setminus A).
+    \]
+
+    Ahora, sabemos que \( f \) no es sobreyectiva, lo que significa que existe un elemento \( a \in A \) tal que \( a \notin \text{Im}(f) \). Este elemento \( a \) no puede estar en \( \text{Im}(g) \), porque:
+    \begin{itemize}
+        \item \( a \notin \text{Im}(f) \), por hipótesis.
+        \item \( a \notin B \setminus A \), ya que \( a \in A \).
+    \end{itemize}
+
+    Dado que \( a \in A \subseteq B \) pero \( a \notin \text{Im}(g) \), se concluye que \( g \) no es sobreyectiva. Por lo tanto, hemos demostrado que \( g \) es una función inyectiva pero no sobreyectiva, lo que implica que \( B \) es Dedekind-infinito.
+
+    Para demostrar la equivalencia, basta tomar la contrarrecíproca: si \( B \) es Dedekind-finito, entonces \( A \) también lo es. Esto concluye la demostración.
+\end{proof}
+    
+\end{document}
