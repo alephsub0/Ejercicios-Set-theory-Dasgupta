@@ -1,0 +1,105 @@
+\documentclass[a4,10pt]{aleph-notas}
+
+% -- Paquetes adicionales
+\usepackage{enumitem}
+\usepackage{aleph-comandos}
+
+% -- Datos
+\institucion{Proyecto Alephsub0}
+\asignatura{Teoría de conjuntos}
+\tema{Problema 323 del libro de Abhijit Dasgupta}
+\autor{Andrés Merino}
+\fecha{Diciembre 2024}
+
+\fuente{montserrat}
+\logouno[4.5cm]{Logos/LogoAlephsub0-02}
+\definecolor{colordef}{cmyk}{0.81,0.62,0.00,0.22}
+
+% -- Comandos adicionales
+\newtheorem*{prob}{Problema}
+    \tcolorboxenvironment{prob}{%
+        color=colordef,recuadrost,colback=colordef!7,drop fuzzy shadow
+    }
+
+
+\begin{document}
+
+\encabezado
+
+\noindent
+El siguiente problema corresponde al Problema 323 del libro Set theory de Abhijit Dasgupta. Primero, presentemos algunas definiciones:
+
+\begin{defi}[Axioma de Elección Numerable (CAC)]
+    Cada familia numerable de conjuntos no vacíos tiene una función de elección. Si \( I \) es numerable y \( \{A_i : i \in I\} \) es una familia de conjuntos con \( A_i \neq \emptyset \) para todo \( i \in I \), entonces existe una función de elección \( g : I \rightarrow \bigcup_{i \in I} A_i \) tal que \( g(i) \in A_i \) para todo \( i \in I \).
+\end{defi}
+
+\begin{defi}[Axioma de la Elección Dependiente (DC)]
+    Sea \( R \) una relación en un conjunto \( A \) tal que para todo \( x \in A \) existe un \( y \in A \) con \( xRy \), y sea \( a \in A \). Entonces existe una secuencia \( (a_n)_{n \in \mathbb{N}} \in A \) tal que \( a_0 = a \) y \( a_n R a_{n+1} \) para todo \( n \in \mathbb{N} \).
+\end{defi}
+
+
+\begin{prob}
+    Demuestre (sin usar ninguna forma del Axioma de Elección) que el Axioma de la Elección Dependiente implica Axioma de Elección Numerable.
+\end{prob}
+
+\begin{proof}
+    Supongamos que tenemos una familia numerable de conjuntos no vacíos 
+    \(
+    \{A_n : n \in \mathbb{N}\}.
+    \)
+    Nuestro objetivo es construir una función de elección 
+    \[
+        \func{g}{\mathbb{N}}{\bigcup_{n \in \mathbb{N}} A_n}
+    \]
+    tal que \(g(n) \in A_n\) para todo \(n \in \mathbb{N}\). 
+    
+    Dado que \(A_0 \neq \emptyset\), tomamos un elemento \(a \in A_0\) (nótese que extraer 
+    un elemento de un \emph{único} conjunto no vacío no requiere usar el Axioma de Elección).
+    
+    Definamos el conjunto
+    \[
+    X = \bigl\{ (n,x) : n \in \mathbb{N} \land x \in A_n \bigr\}.
+    \]
+    A continuación, introducimos la relación \(R\) en \(X\) dada por
+    \[
+    (n,x) R (m,y)
+    \quad\Longleftrightarrow\quad
+    m = n+1.
+    \]
+    Dado que cada \(A_n\) es no vacío, se cumple que, para todo $(n,x)\in X$, existe $y\in A_{n+1}$ tal que $(n+1,y)\in X$ y
+    \[
+    (n,x) R (n+1,y).
+    \]
+    Además, como \(a \in A_0\), tenemos \(\bigl(0,a\bigr) \in X\). Así, aplicando el Axioma de Elección Dependiente, se tiene que existe una sucesión 
+    \(
+    \bigl((n_i,x_i)\bigr)_{i \in \mathbb{N}} 
+    \)
+    con
+    \(
+    (n_0,x_0) = (0,a)
+    \)
+    tal que
+    \[(n_i,x_i) R (n_{i+1},x_{i+1})
+    \]
+    para todo \(i \in \mathbb{N}\).  
+    Como la definición de \(R\) implica que, para todo \(i \in \mathbb{N}\), \(n_{i+1} = n_i + 1\) y \(x_{i+1} \in A_{n_i+1}\),
+    deducimos que \(n_i = i\). Esto nos da una sucesión 
+    \[
+    \bigl((0,x_0), (1,x_1), (2,x_2),\dots\bigr)
+    \]
+    cumpliendo \(x_i \in A_i\) para todo \(i \in \mathbb{N}\). 
+    
+    Definimos entonces 
+    \[
+    \funcion{g}{\mathbb{N}}{\bigcup_{n \in \mathbb{N}} A_n}{i}{g(i) = x_i.}
+    \]
+    Por construcción, \(g(i) \in A_i\) para todo \(i\). De este modo hemos obtenido 
+    una función de elección para la familia 
+    \(\{A_n : n \in \mathbb{N}\}\). Concluimos que 
+    \[
+    DC \Longrightarrow CAC.
+    \]
+\end{proof}
+
+    
+\end{document}
