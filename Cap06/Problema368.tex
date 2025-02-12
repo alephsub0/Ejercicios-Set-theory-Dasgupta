@@ -1,0 +1,76 @@
+\documentclass[a4,10pt]{aleph-notas}
+
+% -- Paquetes adicionales
+\usepackage{enumitem}
+\usepackage{aleph-comandos}
+
+% -- Datos
+\institucion{Proyecto Alephsub0}
+\asignatura{Teoría de conjuntos}
+\tema{Problema 368 del libro de Abhijit Dasgupta}
+\autor{Andrés Merino}
+\fecha{Diciembre 2024}
+
+\fuente{montserrat}
+\logouno[4.5cm]{Logos/LogoAlephsub0-02}
+\definecolor{colordef}{cmyk}{0.81,0.62,0.00,0.22}
+
+% -- Comandos adicionales
+\newtheorem*{prob}{Problema}
+    \tcolorboxenvironment{prob}{%
+        color=colordef,recuadrost,colback=colordef!7,drop fuzzy shadow
+    }
+
+
+\begin{document}
+
+\encabezado
+
+\noindent
+El siguiente problema corresponde al Problema 368 del libro Set theory de Abhijit Dasgupta. Primero, presentemos algunas definiciones:
+
+\begin{defi}[Potencia de Conjuntos]
+    Sea \(A, B\) conjuntos. La potencia \(A^B\) se define como el conjunto de todas las funciones de \(B\) en \(A\), es decir, 
+    \[
+        A^B = \{f : \func{f}{A}{B}\}
+    \]
+\end{defi}
+
+\begin{prob}
+    Sean $A, B$ conjuntos. Si \(A \sim C\) y \(B \sim D\), entonces \(A^B \sim C^D\).
+\end{prob}
+
+\begin{proof}
+    Sean \(\func{f}{A}{C}\) y \(\func{g}{B}{D}\) biyectivas.  
+    Para cada \(F \in A^B\) (es decir, \(\func{F}{B}{A}\)), podemos construir la función:
+    \[
+        f \circ F \circ g^{-1}: D \to C.
+    \]
+    Así, definimos una función:
+    \[
+        \funcion{\mathcal{F}}{A^B}{C^D}{F}{f \circ F \circ g^{-1}}.
+    \]
+    Probemos que \(\mathcal{F}\) es biyectiva:
+    \begin{enumerate}
+        \item \textbf{Inyectividad:}  
+        Sean \(F, G \in A^B\) tales que \(\mathcal{F}(F) = \mathcal{F}(G)\). Entonces:
+        \[
+        f \circ F \circ g^{-1} = f \circ G \circ g^{-1}.
+        \]
+        Como \(f\) y \(g\) son biyectivas, se concluye que \(F = G\). Por lo tanto, \(\mathcal{F}\) es inyectiva.
+        
+        \item \textbf{Sobreyectividad:}  
+        Sea \(H \in C^D\). Queremos encontrar \(F \in A^B\) tal que \(\mathcal{F}(F) = H\).  
+        Definimos \(\func{F=f^{-1} \circ H \circ g}{B}{A}\), con esto:
+        \[
+            \mathcal{F}(F) = f \circ (f^{-1} \circ H \circ g) \circ g^{-1} = H.
+        \]
+        Por lo tanto, \(\mathcal{F}\) es sobreyectiva.
+    \end{enumerate}
+    
+    Dado que \(\mathcal{F}\) es inyectiva y sobreyectiva, concluimos que es biyectiva. Por lo tanto, \(A^B \sim C^D\).
+
+\end{proof}
+
+    
+\end{document}
