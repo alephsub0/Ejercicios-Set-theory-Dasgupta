@@ -1,0 +1,87 @@
+\documentclass[a4,10pt]{aleph-notas}
+
+% -- Paquetes adicionales
+\usepackage{enumitem}
+\usepackage{aleph-comandos}
+
+% -- Datos
+\institucion{Proyecto Alephsub0}
+\asignatura{Teoría de conjuntos}
+\tema{Problema 435-1 del libro de Abhijit Dasgupta}
+\autor{Andrés Merino}
+\fecha{Diciembre 2024}
+
+\fuente{montserrat}
+\logouno[4.5cm]{Logos/LogoAlephsub0-02}
+\definecolor{colordef}{cmyk}{0.81,0.62,0.00,0.22}
+
+% -- Comandos adicionales
+\newtheorem*{prob}{Problema}
+    \tcolorboxenvironment{prob}{%
+        color=colordef,recuadrost,colback=colordef!7,drop fuzzy shadow
+    }
+
+
+\begin{document}
+
+\encabezado
+
+\noindent
+El siguiente problema corresponde al Problema 435-1 del libro Set theory de Abhijit Dasgupta. Primero, presentemos algunas definiciones:
+
+% \begin{defi}[Potencia de Conjuntos]
+%     Sea \(A, B\) conjuntos. La potencia \(A^B\) se define como el conjunto de todas las funciones de \(B\) en \(A\), es decir, 
+%     \[
+%         A^B = \{f : \func{f}{A}{B}\}
+%     \]
+% \end{defi}
+
+\begin{prob}
+    Sea $\mathcal{C}(\mathbb{R}) = \{ \func{f}{\mathbb{R}}{\mathbb{R}} : f\text{ es continua} \}$. Se tiene que
+    \[
+        \big|\mathcal{C}(\mathbb{R})\big| = \mathfrak{c}.
+    \]
+\end{prob}
+
+\begin{proof}
+    Para cada $x_0 \in \mathbb{R}$, consideremos la función constante $\func{f_{x_0}}{\mathbb{R}}{\mathbb{R}}$ dada por
+    \[
+        f_{x_0}(x) = x_0.
+    \]
+    Definimos la aplicación
+    \[
+        \funcion{\Phi}{\mathbb{R}}{\mathcal{C}(\mathbb{R})}{x_0}{\Phi(x_0) = f_{x_0}.}
+    \]
+    Esta función es inyectiva, pues si $\Phi(x_0) = \Phi(x_1)$, entonces $f_{x_0} = f_{x_1}$, lo que implica que $x_0 = x_1$. Así, se tiene que
+    \[
+        \big|\mathcal{C}(\mathbb{R})\big| \geq |\mathbb{R}| = \mathfrak{c}.
+    \]
+
+    Ahora, consideremos el conjunto $\mathcal{C}(\mathbb{Q}) = \{ \func{f}{\mathbb{Q}}{\mathbb{R}} : f \text{ es continua} \}$. Definimos la función
+    \[
+        \funcion{\Psi}{\mathcal{C}(\mathbb{R})}{\mathcal{C}(\mathbb{Q})}{f}{\Psi(f) = f|_{\mathbb{Q}},}
+    \]
+    donde $\Psi(f)$ es la restricción de $f$ a $\mathbb{Q}$. 
+
+    La función $\Psi$ es inyectiva, ya que si $\Psi(f) = \Psi(g)$, entonces $f$ y $g$ coinciden en todos los puntos racionales. Como los racionales son densos en $\mathbb{R}$ y $f, g$ son continuas en $\mathbb{R}$, se sigue que $f = g$ en todo $\mathbb{R}$. 
+
+    Para ver que $\Psi$ es sobreyectiva, tomemos cualquier función $h \in \mathcal{C}(\mathbb{Q})$. Dado que $h$ es continua en $\mathbb{Q}$, se puede extender a una función continua en $\mathbb{R}$ (por el teorema de extensión de continuidades en espacios métricos). Así, existe una función $F \in \mathcal{C}(\mathbb{R})$ tal que $F|_{\mathbb{Q}} = h$, lo que prueba que $\Psi$ es sobreyectiva.
+
+    Como
+    \[
+        \big|\mathcal{C}(\mathbb{Q})\big| = \big|\mathbb{R}^{\mathbb{Q}}\big| = \big|\mathbb{R}^{\mathbb{N}}\big| = \mathfrak{c}^{\aleph_0} = \mathfrak{c},
+    \]
+    se sigue que
+    \[
+        \big|\mathcal{C}(\mathbb{R})\big| \leq \mathfrak{c}.
+    \]
+
+    Con esto, concluimos que
+    \[
+        \big|\mathcal{C}(\mathbb{R})\big| = \mathfrak{c}.\qedhere
+    \]
+\end{proof}
+
+
+    
+\end{document}
