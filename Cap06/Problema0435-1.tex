@@ -1,0 +1,89 @@
+\documentclass[a4,10pt]{aleph-notas}
+
+% -- Paquetes adicionales
+\usepackage{enumitem}
+\usepackage{aleph-comandos}
+
+% -- Datos
+\institucion{Proyecto Alephsub0}
+\asignatura{Teoría de conjuntos}
+\tema{Problema 435-1 del libro de Abhijit Dasgupta}
+\autor{Andrés Merino}
+\fecha{Diciembre 2024}
+
+\fuente{montserrat}
+\logouno[4.5cm]{Logos/LogoAlephsub0-02}
+\definecolor{colordef}{cmyk}{0.81,0.62,0.00,0.22}
+
+% -- Comandos adicionales
+\newtheorem*{prob}{Problema}
+    \tcolorboxenvironment{prob}{%
+        color=colordef,recuadrost,colback=colordef!7,drop fuzzy shadow
+    }
+
+
+\begin{document}
+
+\encabezado
+
+\noindent
+El siguiente problema corresponde al Problema 435-1 del libro Set theory de Abhijit Dasgupta. Primero, presentemos algunas definiciones:
+
+% \begin{defi}[Potencia de Conjuntos]
+%     Sea \(A, B\) conjuntos. La potencia \(A^B\) se define como el conjunto de todas las funciones de \(B\) en \(A\), es decir, 
+%     \[
+%         A^B = \{f : \func{f}{A}{B}\}
+%     \]
+% \end{defi}
+
+\begin{prob}
+    Sea $\mathcal{R}[0,1] = \{ \func{f}{[0,1]}{\mathbb{R}} : f\text{ es acotada y Riemann integrable} \}$. Se tiene que 
+    \[
+        \big|\mathcal{R}[0,1]\big| = 2^{\aleph_0} = \mathfrak{c}.
+    \]
+\end{prob}
+
+\begin{proof}
+    Como $\mathcal{R}[0,1] \subseteq \mathbb{R}^{[0,1]}$, entonces
+    \[
+        \big|\mathcal{R}[0,1]\big| 
+        \leq \big|\mathbb{R}^{[0,1]}\big| 
+        = \big|\mathbb{R}^{\mathbb{R}}\big| 
+        = \mathfrak{c}^{\mathfrak{c}} = \mathfrak{c}.
+    \]
+    
+    Por otro lado, sea $C$ el conjunto de Cantor. Para cada $f \in \mathcal{R}[0,1]$, es decir, para cada función $\func{f}{C}{[0,1]}$, podemos definir 
+    \[
+        \funcion{\hat{f}}{[0,1]}{[0,1]}{x}{
+        \hat{f}(x) =
+        \begin{cases}
+            f(x) & \text{si } x \in C, \\
+            0 & \text{si } x \notin C.
+        \end{cases}}
+    \]
+    Esta función es acotada y constante en el complemento de un  conjunto de medida cero, por lo tanto, es Riemann-integrable. Así, podemos definir la función inyectiva 
+    \[
+        \funcion{\mathcal{F}}{[0,1]^C}{\mathcal{R}[0,1]}{f}{\mathcal{F}(f)=\hat{f}.}
+    \]
+    
+    Para ver que es inyectiva, tomemos $f, g \in [0,1]^C$ tales que $\mathcal{F}(f)=\mathcal{F}(g)$, es decir, $\hat{f} = \hat{g}$. Entonces, para todo $x \in [0,1]$,
+    \[
+        \hat{f}(x) = \hat{g}(x),
+    \]
+    en particular, para todo $x \in C$ se tiene 
+    \[
+        f(x) = \hat{f}(x) = \hat{g}(x) = g(x).
+    \]
+    Por lo tanto, $f = g$. Como $\hat{f}$ es inyectiva, se sigue que
+    \[
+        \big|\mathcal{R}[0,1]\big| \geq \big|[0,1]^C\big| = \big|\mathbb{R}^{\mathbb{N}}\big| = \mathfrak{c}.
+    \]
+    
+    De esta forma, concluimos que 
+    \[
+        \big|\mathcal{R}[0,1]\big| = \mathfrak{c}.\qedhere
+    \]
+\end{proof}
+
+    
+\end{document}
