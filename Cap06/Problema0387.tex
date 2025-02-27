@@ -1,0 +1,120 @@
+\documentclass[a4,10pt]{aleph-notas}
+
+% -- Paquetes adicionales
+\usepackage{enumitem}
+\usepackage{aleph-comandos}
+
+% -- Datos
+\institucion{Proyecto Alephsub0}
+\asignatura{Teoría de conjuntos}
+\tema{Problema 387 del libro de Abhijit Dasgupta}
+\autor{Andrés Merino}
+\fecha{Diciembre 2024}
+
+\fuente{montserrat}
+\logouno[4.5cm]{Logos/LogoAlephsub0-02}
+\definecolor{colordef}{cmyk}{0.81,0.62,0.00,0.22}
+
+% -- Comandos adicionales
+\newtheorem*{prob}{Problema}
+    \tcolorboxenvironment{prob}{%
+        color=colordef,recuadrost,colback=colordef!7,drop fuzzy shadow
+    }
+
+
+\begin{document}
+
+\encabezado
+
+\noindent
+El siguiente problema corresponde al Problema 387 del libro Set theory de Abhijit Dasgupta. Primero, presentemos algunas definiciones:
+
+\begin{prob}
+    Se tiene que
+        \[\sum_{n\in\mathbb{N}^*} n = 1 + 2 + 3 +\cdots =  \aleph_0.\]
+\end{prob}
+
+\begin{proof}[Demostración usando conjuntos]
+    Sea $(A_n)_{n\in\mathbb{N}^*}$ una familia de conjuntos, disjuntos dos a dos, tal que \(|A_n|=n\), para todos $n\in\mathbb{N}^*$. Tomemos
+    \[
+        A=\bigcup_{n\in\mathbb{N}^*} A_n,
+    \]
+    por lo tanto
+    \[
+        \sum_{n\in\mathbb{N}^*} n 
+        = \left|\bigcup_{n\in\mathbb{N}^*} A_n\right|
+        =|A|.
+    \]
+    Como cada \(A_n\) es finito, se tiene que $A$ es la unión numerable de conjuntos finitos, por lo tanto, es, a lo más, numerable, es decir, \(|A|\le \aleph_0\). 
+    
+    Además, dado que cada \(A_n\) es no vacío, por el axioma de elección, existe una función
+    \[
+        \func{f}{\mathbb{N}^*}{\bigcup_{n\in\mathbb{N}^*} A_n}
+    \]
+    tal que $f(n)\in A_n$, para todo $n\in \mathbb{N}^*$. Como $(A_n)_{n\in\mathbb{N}^*}$ son disjuntos dos a dos, esta función es inyectiva, lo que implica \(\aleph_0\le |A|\). 
+    
+    Por tanto,
+    \(
+        |A|=\aleph_0,
+    \)
+    es decir,
+    \[
+        \sum_{n\in\mathbb{N}^*} n = \aleph_0.
+    \]
+\end{proof}
+
+
+\begin{proof}[Demostración usando aritmética cardinal]
+    Por un lado,
+    \[
+        \sum_{n\in\mathbb{N}^*} n 
+        \geq \sum_{n\in\mathbb{N}^*} 1
+        = 1\cdot |\mathbb{N}^*|
+        = 1\cdot \aleph_0
+        = \aleph_0.
+    \]
+    Por otro lado,
+    \[
+        \sum_{n\in\mathbb{N}^*} n 
+        \leq \sum_{n\in\mathbb{N}^*} \aleph_0
+        = \aleph_0\cdot |\mathbb{N}^*|
+        = \aleph_0\cdot \aleph_0
+        = \aleph_0^2
+        = \aleph_0.
+    \]
+    Por lo tanto,
+    \[
+        \sum_{n\in\mathbb{N}^*} n = \aleph_0.
+    \]
+\end{proof}
+
+\begin{prob}
+    Se tiene que
+        \[\prod_{n\in\mathbb{N}^*} n = 1 \cdot 2 \cdot 3 \cdot\cdots =  2^{\aleph_0.}\]
+\end{prob}
+
+\begin{proof}[Demostración usando aritmética cardinal]
+    Por un lado,
+    \[
+        \prod_{n\in\mathbb{N}^*} n 
+        = 1\cdot\prod_{n\in\mathbb{N}^*\setminus \{1\}} n 
+        \geq \prod_{n\in\mathbb{N}^*\setminus \{1\}} 2 
+        = 2^{|\mathbb{N}^*\setminus \{1\}|}
+        = 2^{\aleph_0}.
+    \]
+    Por otro lado,
+    \[
+        \prod_{n\in\mathbb{N}^*} n 
+        \leq \prod_{n\in\mathbb{N}^*} 2^{\aleph_0 }
+        = \left(2^{\aleph_0} \right)^{|\mathbb{N}^*|} 
+        = \left(2^{\aleph_0} \right)^{\aleph_0} 
+        = 2^{\aleph_0\cdot \aleph_0}
+        = 2^{\aleph_0^2}
+        = 2^{\aleph_0}.
+    \]
+    Por lo tanto,
+    \[
+        \prod_{n\in\mathbb{N}^*} n = 2^{\aleph_0}.
+    \]
+\end{proof}
+\end{document}
