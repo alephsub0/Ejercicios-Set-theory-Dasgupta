@@ -1,0 +1,59 @@
+\documentclass[a4,10pt]{aleph-notas}
+
+% -- Paquetes adicionales
+\usepackage{enumitem}
+\usepackage{aleph-comandos}
+
+% -- Datos
+\institucion{Proyecto Alephsub0}
+\asignatura{Teoría de conjuntos}
+\tema{Problema 504 del libro de Abhijit Dasgupta}
+\autor{Andrés Merino}
+\fecha{Diciembre 2024}
+
+\fuente{montserrat}
+\logouno[4.5cm]{Logos/LogoAlephsub0-02}
+\definecolor{colordef}{cmyk}{0.81,0.62,0.00,0.22}
+
+% -- Comandos adicionales
+\newtheorem*{prob}{Problema}
+    \tcolorboxenvironment{prob}{%
+        color=colordef,recuadrost,colback=colordef!7,drop fuzzy shadow
+    }
+
+
+\begin{document}
+
+\encabezado
+
+\noindent
+El siguiente problema corresponde al Problema 504 del libro Set theory de Abhijit Dasgupta. Primero, presentemos algunas definiciones:
+
+\begin{defi}
+Sean $X$ un conjunto ordenado, $a \in X$ y  $A \subseteq X$.
+Decimos que $a$ es un \textit{punto de acumulación superior de $A$ en $X$} si $a$ no es el primer elemento de $X$, y para todo $x < a$ existe algún $p \in A$ tal que $x < p < a$. 
+\end{defi}
+
+\begin{defi}
+Un conjunto ordenado no trivial $X$ se dice \textit{denso en orden} si para todos $x, y \in X$ con $x < y$, existe $z \in X$ tal que $x < z < y$, es decir, si $X$ no contiene elementos consecutivos.
+\end{defi}
+
+\begin{prob}
+    Sea $X$ un conjunto ordenado no trivial. Demuestre que todo elemento de $X$ es un punto de acumulación superior si y solo si $X$ es denso en orden y no tiene primer elemento.
+\end{prob}
+
+\begin{proof}
+Supongamos que todo elemento de $X$ es un punto de acumulación superior.
+
+\begin{itemize}
+    \item Como todo elemento de $X$ es un punto de acumulación superior, entonces ninguno puede ser el primer elemento. Por lo tanto, $X$ no tiene primer elemento.
+
+    \item Ahora, sean $x, y \in X$ tales que $x < y$. Como $y$ es un punto de acumulación superior, se tiene que para todo $x < y$, existe $z \in X$ tal que $x < z < y$. De donde se concluye que $X$ es denso en orden.
+\end{itemize}
+
+Recíprocamente, supongamos que $X$ es denso en orden y que no tiene primer elemento. Sea $x \in X$, vamos a demostrar que $x$ es un punto de acumulación superior.
+
+Primero, como $X$ no tiene primer elemento, se cumple que $x$ no es el primer elemento de $X$. Además, para todo $y < x$ con $y \in X$, como $X$ es denso en orden, existe $z \in X$ tal que $y < z < x$. Por lo tanto, existe un elemento entre $y$ y $x$ que pertenece a $X$, lo que implica que $x$ es un punto de acumulación superior.
+\end{proof}
+
+\end{document}
