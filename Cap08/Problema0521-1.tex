@@ -1,0 +1,87 @@
+\documentclass[a4,10pt]{aleph-notas}
+
+% -- Paquetes adicionales
+\usepackage{enumitem}
+\usepackage{aleph-comandos}
+
+% -- Datos
+\institucion{Proyecto Alephsub0}
+\asignatura{Teoría de conjuntos}
+\tema{Problema 521-1 del libro de Abhijit Dasgupta}
+\autor{Andrés Merino}
+\fecha{Julio 2025}
+
+\fuente{montserrat}
+\logouno[4.5cm]{Logos/LogoAlephsub0-02}
+\definecolor{colordef}{cmyk}{0.81,0.62,0.00,0.22}
+
+% -- Comandos adicionales
+\newtheorem*{prob}{Problema}
+    \tcolorboxenvironment{prob}{%
+        color=colordef,recuadrost,colback=colordef!7,drop fuzzy shadow
+    }
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+
+\encabezado
+
+\noindent
+El siguiente problema corresponde al Problema 521-1 del libro Set theory de Abhijit Dasgupta. Primero, presentemos algunas definiciones:
+
+\begin{defi}
+    Toda cortadura \( (L, U) \) en un orden \( E \) es exactamente uno de los siguientes tipos:
+    
+    \begin{enumerate}
+        \item \textbf{Salto:} \( L \) tiene un máximo y \( U \) tiene un mínimo.
+        \item \textbf{Corte por punto límite superior:} \( L \) no tiene máximo, pero \( U \) tiene un mínimo. Ese mínimo es un punto límite superior de \( L \).
+        \item \textbf{Corte por punto límite inferior:} \( U \) no tiene mínimo, pero \( L \) tiene un máximo. Ese máximo es un punto límite inferior de \( U \).
+        \item \textbf{Hueco:} Ni \( L \) tiene un máximo, ni \( U \) tiene un mínimo.
+    \end{enumerate}
+\end{defi}
+
+\begin{defi}
+    Un orden \( E \) es \textbf{Dedekind completo} si no tiene huecos, es decir, si toda cortadura en \( E \) no es un hueco.
+\end{defi}
+
+
+\begin{defi}
+    Un orden \( E \) es \textbf{totalmente discreto} si toda cortadura en \( E \) es un salto.
+\end{defi}
+
+
+\begin{prob}
+    Un orden \( E \) es totalmente discreto si y sólo si es Dedekind completo y no tiene puntos límite.
+\end{prob}
+
+\begin{proof}
+Supongamos que \( E \) es totalmente discreto. Es decir, toda cortadura en \( E \) es un salto.
+
+\begin{itemize}
+    \item \textit{Completitud:} Sea \( (L, U) \) una cortadura en \( E \). Como todo corte es un salto, entonces ningún corte puede ser un hueco. Por lo tanto, \( E \) es Dedekind completo.
+
+    \item \textit{Ausencia de puntos límite:} Supongamos, para obtener una contradicción, que \( E \) tiene un punto límite. 
+    Sin pérdida de generalidad, supongamos que \( a \in E \) es un punto límite superior. 
+    Entonces, por definición, $a$ no es el primer elemento de $E$ y para todo \( x < a \), existe \( p \in A \) tal que \( x < p < a \).
+
+    Consideremos:
+    \[
+    L = \{x \in E : x < a\}, \quad U = \{x \in E : x \ge a\}.
+    \]
+    Como $a$ no es el primer elemento de $E$, $L\neq \emptyset$, de donde $(L,U)$ es una cortadura. Por ser \( E \) totalmente discreto, debe ser un salto. 
+    Por lo tanto, \( L \) tiene un máximo, sea \( b = \max(L) \).
+
+    Sin embargo, por la definición de punto límite superior, debe existir \( p \in A \) tal que \( b < p < a \), lo cual contradice que \( b \) sea el máximo de \( L \). 
+    Por lo tanto, nuestra suposición era falsa, y \( E \) no tiene puntos límite.
+\end{itemize}
+
+Recíprocamente, supongamos que \( E \) es Dedekind completo y no tiene puntos límite. 
+Sea \( (L, U) \) una cortadura en \( E \).
+
+Como \( E \) es completo, la cortadura no puede ser un hueco. 
+Como no tiene puntos límite, la cortadura no puede ser ni por punto límite superior ni por punto límite inferior. 
+Entonces, la única posibilidad es que la cortadura sea un salto. Por lo tanto, toda cortadura en \( E \) es un salto, es decir, \( E \) es totalmente discreto. 
+\end{proof}
+
+\end{document}
