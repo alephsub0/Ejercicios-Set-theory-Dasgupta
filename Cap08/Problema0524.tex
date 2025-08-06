@@ -1,0 +1,82 @@
+\documentclass[a4,10pt]{aleph-notas}
+
+% -- Paquetes adicionales
+\usepackage{enumitem}
+\usepackage{aleph-comandos}
+
+% -- Datos
+\institucion{Proyecto Alephsub0}
+\asignatura{Teoría de conjuntos}
+\tema{Problema 524 del libro de Abhijit Dasgupta}
+\autor{Andrés Merino}
+\fecha{Julio 2025}
+
+\fuente{montserrat}
+\logouno[4.5cm]{Logos/LogoAlephsub0-02}
+\definecolor{colordef}{cmyk}{0.81,0.62,0.00,0.22}
+
+% -- Comandos adicionales
+\newtheorem*{prob}{Problema}
+    \tcolorboxenvironment{prob}{%
+        color=colordef,recuadrost,colback=colordef!7,drop fuzzy shadow
+    }
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+
+\encabezado
+
+\noindent
+El siguiente problema corresponde al Problema 524 del libro Set theory de Abhijit Dasgupta.
+
+\begin{prob}
+    Da un ejemplo de dos órdenes no isomorfos, cada uno de los cuales sea isomorfo a un suborden del otro.
+\end{prob}
+
+\begin{proof}
+    Consideremos los conjuntos ordenados
+    \[
+        E = [0,1] \quad \text{y} \quad F = (0,1].
+    \]
+    No son isomorfos, pues $E$ tiene un elemento mínimo ($0$) y $F$ no tiene elemento mínimo.
+
+    Por otro lado, definamos las aplicaciones:
+    \[
+        \funcion{f_1}{E}{F}{x}{\frac{x+1}{2},}
+        \qquad\text{y}\qquad
+        \funcion{f_2}{F}{E}{x}{x.}
+    \]
+    Para $f_1$, observemos que:
+    \begin{itemize}
+        \item Para $x, y$ en $E$, se tiene que
+        \[
+            x < y
+            \qDimp
+            \frac{x+1}{2} < \frac{y+1}{2}
+            \qDimp
+            f_1(x) < f_2(x).
+        \]
+        \item Por el punto anterior, $f_1$ es inyectiva.
+        \item La imagen de $f_1$ es $f_1(E) = \left[\frac{1}{2}, 1\right] \subseteq F$.
+    \end{itemize}
+    Por lo tanto, $f_1$ es un isomorfismo de órdenes entre $E$ y el suborden $f_1(E)$ de $F$.
+
+    Análogamente, para $f_2$:
+    \begin{itemize}
+        \item $f_2$ es la inclusión de $F$ en $E$, por lo que, para $x,y\in E$,
+        \[
+            x < y
+            \qDimp
+            f_2(x) < f_2(x).
+        \]
+        \item Por el punto anterior, $f_2$ es inyectiva.
+        \item La imagen de $f_2$ es $F$ mismo.
+    \end{itemize}
+    Por lo tanto, $f_2$ es un isomorfismo de órdenes entre $F$ y el suborden $F \subseteq E$.
+
+    Así, aunque $E$ y $F$ no son isomorfos, cada uno es isomorfo a un suborden del otro.
+\end{proof}
+
+
+\end{document}
