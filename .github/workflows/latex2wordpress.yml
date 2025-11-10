@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  PROBLEMA_PATH: ./Cap08/Problema0524.tex
+  PROBLEMA_PATH: ./Otros/Otros.tex
   USUARIO: ${{ secrets.USUARIO }}
   USUARIO_SERV: ${{ secrets.USUARIO_SERV }}
   CONTRASENIA_SERV: ${{ secrets.CONTRASENIA_SERV }}
